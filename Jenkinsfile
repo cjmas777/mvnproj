@@ -4,7 +4,8 @@ pipeline {
         stage('Clone') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/mohdadil82/mvnproj.git'
+                git 'https://github.com/cjmas777/mvnproj.git'
+
             }
         }
         stage('Build') {
@@ -14,11 +15,11 @@ pipeline {
 
             }
         }
-        stage('Build docker image and run container') {
+        stage('publish on tomcat server') {
             steps {
                 // build maven project
-                sh 'docker build -t catalina:latest .'
-                sh 'docker run -d -p 8090:8080 catalina'
+                sh 'cp **/* /var/lib/tomcat9/webapps/'
+                
             }
         }
     
